@@ -5,7 +5,7 @@ const blogSchema = new Schema(
   {
     title: { type: String, required: true },
     content: { type: String, required: true },
-    author: { type: String, required: true },
+    author: { type: String, required: true, ref: "user" },
   },
   {
     timestamps: true,

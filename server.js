@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-// const cors = require("cors");
-// const corsOptions = require("./src/config/cors");
+const cors = require("cors");
+const corsOptions = require("./src/config/cors");
 const app = express();
 
 require("dotenv").config();
@@ -24,8 +24,6 @@ const connection = mongoose.connection;
 connection.once("open", () => {
   console.log("Database running Successfully");
 });
-
-
 
 app.use("/api", routes);
 
