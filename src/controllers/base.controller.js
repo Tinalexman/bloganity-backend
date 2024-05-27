@@ -3,73 +3,61 @@ class BaseController {
     this.repository = new repoClass();
   }
 
-  getAll = (req, res) => {
-    this.repository
-      .findAll()
-      .then((data) => {
-        return this.ok(res, data);
-      })
-      .catch((err) => {
-        return this.internalError(err, res);
-      });
+  getAll = async (req, res) => {
+    try {
+      let data = await this.repository.findAll();
+      this.ok(res, data);
+    } catch (err) {
+      this.internalError(err, res);
+    }
   };
 
-  getById = (req, res) => {
-    let id = req.params.id;
-    this.repository
-      .findById(id)
-      .then((data) => {
-        return this.ok(res, data);
-      })
-      .catch((err) => {
-        return this.internalError(err, res);
-      });
+  getById = async (req, res) => {
+    try {
+      let id = req.params.id;
+      let data = await this.repository.findById(id);
+      this.ok(res, data);
+    } catch (err) {
+      this.internalError(err, res);
+    }
   };
 
-  create = (req, res) => {
-    let body = req.body;
-    this.repository
-      .create(body)
-      .then((data) => {
-        return this.created(res, data);
-      })
-      .catch((err) => {
-        return this.internalError(err, res);
-      });
+  create = async (req, res) => {
+    try {
+      let body = req.body;
+      let data = await this.repository.create(body);
+      this.created(res, data);
+    } catch (err) {
+      this.internalError(err, res);
+    }
   };
 
-  update = (req, res) => {
-    let body = req.body;
-    this.repository
-      .update(body)
-      .then((data) => {
-        return this.ok(res, data);
-      })
-      .catch((err) => {
-        return this.internalError(err, res);
-      });
+  update = async (req, res) => {
+    try {
+      let body = req.body;
+      let data = await this.repository.update(body);
+      this.ok(res, data);
+    } catch (err) {
+      this.internalError(err, res);
+    }
   };
 
-  deleteById = (req, res) => {
-    this.repository
-      .deleteById(req.params.id)
-      .then((_) => {
-        return this.ok(res);
-      })
-      .catch((err) => {
-        return this.internalError(err, res);
-      });
+  deleteById = async (req, res) => {
+    try {
+      await this.repository.deleteById(req.params.id);
+      this.ok(res);
+    } catch (err) {
+      this.internalError(err, res);
+    }
   };
 
-  deleteAll = (req, res) => {
-    this.repository
-      .deleteAll()
-      .then((_) => {
-        return this.ok(res);
-      })
-      .catch((err) => {
-        return this.internalError(err, res);
-      });
+  deleteAll = async (req, res) => {
+    try {
+      await this.repository.deleteAll();
+      this.ok(res);
+    } catch (err) {
+      this.internalError(err, res);
+    }
   };
 
   ok = (response, data) => {

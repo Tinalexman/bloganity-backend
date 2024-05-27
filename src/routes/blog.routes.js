@@ -1,12 +1,13 @@
 const express = require("express");
-const GenreController = require("../controllers/genre.controller");
-const controller = new GenreController();
+const BlogController = require("../controllers/blog.controller");
+
+
+const controller = new BlogController();
 const router = express.Router();
 
-const requireLogin = require("../middlewares/requireLogin");
-
 router.get("/", controller.getAll);
-router.post("/add", requireLogin, controller.create);
+router.get("/:id", controller.getById);
+router.post("/create", requireLogin, controller.create);
 router.put("/edit", requireLogin, controller.update);
 router.delete("/delete/:id", requireLogin, controller.deleteById);
 router.delete("/delete", requireLogin, controller.deleteAll);

@@ -4,7 +4,7 @@ class BaseRepository {
   }
 
   async findAll() {
-    let data = await this.mongooseCollection.find().lean().exec();
+    let data = await this.mongooseCollection.find();
     return data;
   }
 
