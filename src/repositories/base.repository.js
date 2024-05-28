@@ -27,11 +27,6 @@ class BaseRepository {
     await this.mongooseCollection.findByIdAndDelete(id);
     return;
   }
-
-  async deleteAll() {
-    await this.mongooseCollection.deleteMany({});
-    return;
-  }
 }
 
 module.exports = BaseRepository;

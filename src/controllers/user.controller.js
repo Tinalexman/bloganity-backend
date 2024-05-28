@@ -21,10 +21,10 @@ class UserController extends BaseController {
       bcrypt.compare(password, user.password).then(async (doMatch) => {
         if (doMatch) {
           const token = jwt.sign({ _id: user._id }, jwt_secret);
-          const { email, fullName } = user;
+          const { name } = user;
           this.ok(res, {
             token,
-            user: { email: email, fullName: fullName },
+            user: { name: name },
           });
         } else {
           this.forbiddenError({ error: "Wrong Password" }, res);
@@ -46,9 +46,9 @@ class UserController extends BaseController {
       let hashed = await bcrypt.hash(password, 4);
       userDetails.password = hashed;
       let user = await this.repository.create(userDetails);
-      const { email } = user;
+      const { name } = user;
       const token = jwt.sign({ _id: user._id }, jwt_secret);
-      this.ok(res, { token, user: { email: email } });
+      this.ok(res, { token, user: { name: name } });
     }
   };
 }

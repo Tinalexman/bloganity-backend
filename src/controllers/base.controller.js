@@ -51,14 +51,6 @@ class BaseController {
     }
   };
 
-  deleteAll = async (req, res) => {
-    try {
-      await this.repository.deleteAll();
-      this.ok(res);
-    } catch (err) {
-      this.internalError(err, res);
-    }
-  };
 
   ok = (response, data) => {
     if (data) {
