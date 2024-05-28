@@ -1,6 +1,6 @@
 const whitelist = [
   "http://localhost:3000",
-  "https://page-turner-theta.vercel.app",
+  "https://bloganity.vercel.app",
 ];
 
 const corsOptions = {

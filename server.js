@@ -11,7 +11,7 @@ const routes = require("./src/routes/api.routes");
 const port = process.env.PORT || 3030;
 
 
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ limit: "50mb", extended: false }));
 app.use(express.json({ limit: "50mb", extended: true }));
 
